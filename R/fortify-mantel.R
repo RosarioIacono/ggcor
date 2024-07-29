@@ -143,7 +143,7 @@ mantel_test <- function(spec,
   if(!is.list(env.select) && !is.null(env.select))
     stop("'env.select' needs a list or NULL.", call. = FALSE)
   if(is.null(spec.select)) {
-    spec.select <- list(spec = 1:ncol(spec))
+    spec.select <- as.list(setNames(1:ncol(spec), names(spec)))
   }
   if(is.null(env.select)) {
     env.select <- as.list(setNames(1:ncol(env), names(env)))
