@@ -65,7 +65,7 @@ fortify_mantel <- function(spec,
                       })
     )
   } else {
-    df <- mantel_test(spec, env, env.ctrl, mantel.fun, na.rm = TRUE, ...)
+    df <- mantel_test(spec, env, env.ctrl, mantel.fun, na.rm,...)
   }
   grouped <- if(!is.null(group)) TRUE else FALSE
   attr(df, "grouped") <- grouped
@@ -122,6 +122,7 @@ mantel_test <- function(spec,
                         env.select = NULL,
                         spec.dist.method = "bray",
                         env.dist.method = "euclidean",
+                        na.rm = TRUE,
                         ...)
 {
   if(!is.data.frame(spec))
