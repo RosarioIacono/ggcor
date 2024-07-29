@@ -157,10 +157,10 @@ mantel_test <- function(spec,
     subset(env, select = .x, drop = FALSE)})
 
   rp <- purrr::map2(spec.name, env.name, function(.x, .y) {
-    spec.dist <- vegan::vegdist(spec[[.x]], method = spec.dist.method)
-    env.dist <- vegan::vegdist(env[[.y]], method = env.dist.method)
+    spec.dist <- vegan::vegdist(spec[[.x]], method = spec.dist.method, na.rm = TRUE)
+    env.dist <- vegan::vegdist(env[[.y]], method = env.dist.method, na.rm = TRUE)
     if(mantel.fun == "mantel.partial") {
-      env.ctrl.dist <- vegan::vegdist(env.ctrl, method = env.dist.method)
+      env.ctrl.dist <- vegan::vegdist(env.ctrl, method = env.dist.method, na.rm = TRUE)
     }
     switch (mantel.fun,
             mantel.partial  = vegan::mantel.partial(spec.dist, env.dist, env.ctrl.dist, ...),
