@@ -163,10 +163,10 @@ mantel_test <- function(spec,
       env.ctrl.dist <- vegan::vegdist(env.ctrl, method = env.dist.method, na.rm = TRUE)
     }
     switch (mantel.fun,
-            mantel.partial  = vegan::mantel.partial(spec.dist, env.dist, env.ctrl.dist, ...),
-            mantel          = vegan::mantel(spec.dist, env.dist, ...),
-            mantel.randtest = ade4::mantel.randtest(spec.dist, env.dist, ...),
-            mantel.rtest    = ade4::mantel.rtest(spec.dist, env.dist, ...),
+            mantel.partial  = vegan::mantel.partial(spec.dist, env.dist, env.ctrl.dist, na.rm = TRUE,...),
+            mantel          = vegan::mantel(spec.dist, env.dist, na.rm = TRUE, ...),
+            mantel.randtest = ade4::mantel.randtest(spec.dist, env.dist, na.rm = TRUE, ...),
+            mantel.rtest    = ade4::mantel.rtest(spec.dist, env.dist, na.rm = TRUE, ...),
     )
   }) %>% extract_mantel(mantel.fun)
 
