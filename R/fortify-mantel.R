@@ -60,12 +60,12 @@ fortify_mantel <- function(spec,
     df <- suppressMessages(
       purrr::pmap_dfr(list(spec, env, env.ctrl, as.list(names(spec))),
                       function(.spec, .env, .env.ctrl, .group) {
-                        mantel_test(.spec, .env, .env.ctrl, mantel.fun, ...) %>%
+                        mantel_test(.spec, .env, .env.ctrl, mantel.fun, na.rm = TRUE, ...) %>%
                           dplyr::mutate(.group = .group)
                       })
     )
   } else {
-    df <- mantel_test(spec, env, env.ctrl, mantel.fun, na.rm,...)
+    df <- mantel_test(spec, env, env.ctrl, mantel.fun, na.rm = TRUE,...)
   }
   grouped <- if(!is.null(group)) TRUE else FALSE
   attr(df, "grouped") <- grouped
